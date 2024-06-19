@@ -15,8 +15,7 @@ struct StudentInfo {
 
 // Function to add a student
 void add_student() {
-    printf("Add Student Details\n");
-    printf("--------------------\n");
+    printf("\n--- Add Student Details ---\n");
     // Input first name
     printf("Enter the first name of the student: ");
     scanf("%s", students[student_count].fname);
@@ -27,20 +26,22 @@ void add_student() {
     printf("Enter the roll number: ");
     scanf("%d", &students[student_count].roll);
     student_count++;
+    printf("Student added successfully!\n");
 }
 
 // Function to find a student by roll number
 void find_by_roll() {
     int roll_number;
+    printf("\n--- Find Student by Roll Number ---\n");
     printf("Enter the roll number of the student: ");
     scanf("%d", &roll_number);
     for (int j = 0; j < student_count; j++) {
         if (roll_number == students[j].roll) {
             // Display student details
             printf("Student Details:\n");
-            printf("First name: %s\n", students[j].fname);
-            printf("Last name: %s\n", students[j].lname);
-            printf("Roll number: %d\n", students[j].roll);
+            printf("First Name: %s\n", students[j].fname);
+            printf("Last Name: %s\n", students[j].lname);
+            printf("Roll Number: %d\n", students[j].roll);
             return;
         }
     }
@@ -51,15 +52,16 @@ void find_by_roll() {
 // Function to find a student by first name
 void find_by_first_name() {
     char first_name[50];
+    printf("\n--- Find Student by First Name ---\n");
     printf("Enter the first name of the student: ");
     scanf("%s", first_name);
     for (int j = 0; j < student_count; j++) {
         if (strcmp(students[j].fname, first_name) == 0) {
             // Display student details
             printf("Student Details:\n");
-            printf("First name: %s\n", students[j].fname);
-            printf("Last name: %s\n", students[j].lname);
-            printf("Roll number: %d\n", students[j].roll);
+            printf("First Name: %s\n", students[j].fname);
+            printf("Last Name: %s\n", students[j].lname);
+            printf("Roll Number: %d\n", students[j].roll);
             return;
         }
     }
@@ -69,6 +71,7 @@ void find_by_first_name() {
 
 // Function to print the total number of students
 void total_students() {
+    printf("\n--- Total Number of Students ---\n");
     printf("Total number of students: %d\n", student_count);
     printf("Maximum number of students allowed: 50\n");
     printf("You can add %d more students.\n", 50 - student_count);
@@ -77,6 +80,7 @@ void total_students() {
 // Function to delete a student by roll number
 void delete_student() {
     int roll_number;
+    printf("\n--- Delete Student by Roll Number ---\n");
     printf("Enter the roll number to delete: ");
     scanf("%d", &roll_number);
     for (int j = 0; j < student_count; j++) {
@@ -97,6 +101,7 @@ void delete_student() {
 // Function to update student data
 void update_student() {
     int roll_number;
+    printf("\n--- Update Student Details ---\n");
     printf("Enter the roll number to update: ");
     scanf("%d", &roll_number);
     for (int j = 0; j < student_count; j++) {
@@ -142,6 +147,7 @@ void save_to_file() {
         printf("Unable to open file.\n");
         return;
     }
+    // Write each student's data to the file
     for (int j = 0; j < student_count; j++) {
         fprintf(file, "%s %s %d\n", students[j].fname, students[j].lname, students[j].roll);
     }
@@ -157,11 +163,12 @@ void load_from_file() {
         return;
     }
     student_count = 0;
+    // Read student data from the file
     while (fscanf(file, "%s %s %d", students[student_count].fname, students[student_count].lname, &students[student_count].roll) != EOF) {
         student_count++;
     }
     fclose(file);
-    printf("\nStudents loaded from file successfully.\n");
+    printf("Students loaded from file successfully.\n");
 }
 
 // Main function
@@ -170,7 +177,7 @@ int main() {
     load_from_file(); // Load students from file at the start
     while (1) {
         // Display menu
-        printf("\nMenu:\n");
+        printf("\n--- Student Management System ---\n");
         printf("1. Add Student\n");
         printf("2. Find Student by Roll Number\n");
         printf("3. Find Student by First Name\n");
